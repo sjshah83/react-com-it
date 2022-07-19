@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Create User
+    </title>
+    <style>
+   /*   label {
+        font-size: 20px;
+        /*display: block;
+        vertical-align: top;
+      } */
+      textarea{
+        vertical-align: top
+      }
+      ss{
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <h1>Create User</h1>
+      <br><hr><br>
+    </p>
+    <form action="createUser.html" method="GET">
+      <table width="700px">
+        <tr>
+          <td width="150px"><label for="userEmail"> Email </label></td>
+          <td><input type="email" name="email" id="userEmail" placeholder="E-mail" required/><br /></td>
+        </tr>
+        <tr>
+          <td><label for="userName"> User Name </label></td>
+          <td><input type="text" name="name" id="userName" size="30" maxlength="12" placeholder="User Name"/><br /></td>
+        </tr>
+        <tr>
+          <td><label for="userPasswd"> Password </label></td>
+          <td><input type="password" name="passwd" id="userPasswd" size="30" maxlength="8" placeholder="Password" required/><br /></td>
+        </tr>
+        <tr>
+          <td><label for="userBio" > Bio </label></td> 
+          <td colspan="2">
+      <!--        <label for="userBio"> Bio </label>-->
+            <textarea
+              rows="3"
+              cols="30"
+              placeholder="Give discription of this user.."
+              id="userBio"
+              name="bio"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <fieldset>
+              <legend>Intrests</legend>
+              <table>
+                <tr>
+                  <td><label> Select your favourite superhero :</label></td>
+                  <td>
+                    <input type="radio" id="sm" name="superHero" />
+                    <label for="sm">Super Man</label>
+                  </td>
+                  <td>
+                    <input type="radio" id="bm" name="superHero" />
+                    <label for="bm">Bat Man</label>
+                  </td>
+                  <td>
+                      <input type="radio" id="ww" name="superHero" checked/>
+                      <label for="ww">Wonder Woman</label>
+                  </td>
+                  <td>
+                    <input type="radio" id="flash" name="superHero" />
+                    <label for="flash">Flash</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label> Select your favourite video game :</label></td>
+                  <td>
+                    <input type="checkbox" id="fifa" name="videoGame" checked />
+                    <label for="fifa">FIFA</label>
+                  </td>
+                  <td>
+                    <input type="checkbox" id="nhl" name="videoGame" />
+                    <label for="nhl">NHL</label>
+                  </td>
+                  <td>
+                      <input type="checkbox" id="re" name="videoGame" />
+                      <label for="re">Resident Evil</label>
+                  </td>  
+                  <td>
+                    <input type="checkbox" id="uc" name="videoGame" checked/>
+                    <label for="uc">Uncharted</label>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+          </td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr align="middle">
+          <td colspan="2">
+            <input type="submit"value="Create User"/>
+          </td>
+        </tr>
+      </table>
+
+      <input type="hidden" name="userid" value="2300"/>
+
+    </form>
+  </body>
+</html>
