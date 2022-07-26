@@ -14,4 +14,4 @@ https://codesandbox.io/s/structuringplanetdata-whxpq3
 https://codesandbox.io/s/createuser-ass2-v26qdv
 
 5) CSS_WEEK_1_Assignment1 - Style a biography
-https://codesandbox.io/s/autumn-mountain-1exjf9?file=/index.html:0-948
+https://codesandbox.io/s/style-biography-1exjf9
