@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(8, 8, 8);
+  color: rgb(146, 143, 143);
+}
+h1 {
+  padding-top: 2em;
+  color: #be375f;
+  border-bottom-style: double;
+  border-bottom-color: #5f236b;
+  border-bottom-width: 2mm;
+}
+
+.job-title {
+  color: #f5eb6d;
+  font-family: sans-serif;
+  font-size: 1.3em;
+}
+
+p {
+  line-height: 1.5em;
+  font-size: 1.1em;
+  font-family: sans-serif;
+}
+
+h2 {
+  padding-top: 1.5em;
+  color: #ed8554;
+}
+
+ul {
+  font: 15px "trebuchet MS", "lucida sans";
+  margin-bottom: 4em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  /*list-style-type: square;*/
+  list-style-image: url("/images/pink_arrow.png");
+}
+
+li {
+  padding: 1em;
+}
+
+li a:link,
+li a:visited {
+  color: #f5eb6d;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: #be375f;
+  text-decoration: none;
+}
