@@ -15,3 +15,6 @@ https://codesandbox.io/s/createuser-ass2-v26qdv
 
 5) CSS_WEEK_1_Assignment1 - Style a biography
 https://codesandbox.io/s/style-biography-1exjf9
+
+6) CSS_WEEK_2_Assignment1 - Style a Community School HompePage
+https://codesandbox.io/s/sharp-thunder-5sqiw9
