@@ -19,5 +19,5 @@ https://codesandbox.io/s/style-biography-1exjf9
 6) CSS_WEEK_3_Assignment2 - Style a Community School HompePage
 https://codesandbox.io/s/sharp-thunder-5sqiw9
 
-7) CSS_WEEK_4_Addignment1 - Layout 
+7) CSS_WEEK_4_Assignment1 - Layout 
 https://codesandbox.io/s/css-assignment-layout-forked-4zdces
