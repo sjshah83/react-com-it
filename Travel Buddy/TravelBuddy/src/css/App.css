@@ -1,0 +1,177 @@
+.App {
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} 
+
+/* General setup */
+
+@font-face {
+  font-family: "Open Serif";
+  src: url("../fonts/SansSerifBookFLF.otf");
+}
+@font-face {
+  font-family: "Label";
+  src: url("../fonts/SansSerifExbFLF.otf");
+}
+@font-face {
+  font-family: "Heading";
+  src: url("../fonts/SansSerifFLF.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Open Serif";
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 2.5;
+}
+
+body {
+  width: 100%;
+  background-image: url("../images/travel-horizen.jpg");
+  background-size: "cover";
+  height: 100vh;
+  background-position-y: 10em;
+  background-repeat: no-repeat;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8em;
+  background-image: linear-gradient(
+    120deg,
+    #e0844eec 0%,
+    #52419c 78%,
+    #402a72 100%
+  );
+}
+
+nav {
+  margin-top: 0.5em;
+  margin-bottom: 20px;
+  padding: 0.5em;
+  position: sticky;
+  top: 20px;
+  background-color: white;
+  /* border-top: 5px solid;
+  border-bottom: 5px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    120deg,
+    #5271c4 0%,
+    #b19fff 48%,
+    #eca1fe 100%
+  );*/
+}
+
+/*nav div {
+  border: 2px dashed green;
+}*/
+
+.headerWrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0.5em;
+}
+
+.headerLinks {
+  vertical-align: middle;
+}
+
+.logo > img {
+  width: 150px;
+}
+
+.login {
+  text-decoration: none;
+  font-family: "Label";
+  font-size: 1.5em;
+  line-height: 1em;
+  color: #e0844eec;
+  padding: 0.5em 2em;
+  border-radius: 30px;
+  border: 5px solid #e0844eec;
+  background: #ffffff;
+  cursor: pointer;
+  /*-webkit-transition: 0.2s all ease-in-out;*/
+  position: relative;
+  top: 1em;
+}
+
+.register {
+  text-decoration: none;
+  font-family: "Label";
+  font-size: 1.8em;
+  line-height: 1.2em;
+  color: #ffffff;
+  padding: 1em 3em;
+  border-radius: 30px;
+  cursor: pointer;
+  background-image: linear-gradient(
+    120deg,
+    #e0844eec 0%,
+    #52419c 78%,
+    #402a72 100%
+  );
+  position: relative;
+  top: 1em;
+}
+
+section {
+  display: inline;
+  float: left;
+  margin-top: 5em;
+}
+
+h1 {
+  font-family: "Heading";
+  font-size: 4em;
+  margin-bottom: 1em;
+  line-height: 1.2em;
+  font-weight: 600;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.banner-wrap {
+  width: 50%;
+}
+
+.banner-heading {
+  font-weight: 700;
+  font-size: 3em;
+  text-shadow: rgb(0, 0, 0) 0px 0px 2em;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+}
+
+.banner-subinfo {
+  font-size: 1.5em;
+  font-weight: 400;
+  text-shadow: rgb(0, 0, 0) 0px 0px 1em;
+  color: rgb(255, 255, 255);
+  margin-bottom: 2em;
+}
