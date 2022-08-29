@@ -1,20 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
-export const HomePage= ()=>{
-    return(
-        <div>
+export const HomePage = () => {
+    return (
+        <div className="bodyBackground">
             <nav>
                 <div class="headerWrap">
                     <div class="logo">
                         <img src={require('../../images/travelbuddy.png')} alt="travelBuddy-Logo" />
                     </div>
                     <div class="headerLinks">
-                        <a href="{login.html}" class="login">
-                            Login
-                        </a>
-                        <a href="register.html" class="register">
-                            Register Yourself
-                        </a>
+                        <Link to="/login" className="login">Login</Link>
+                        <Link to="/register" className="register">Register Yourself</Link>
                     </div>
                 </div>
             </nav>
@@ -47,6 +44,6 @@ export const HomePage= ()=>{
             </footer>
         </div>
     );
-} ;
+};
 
-export default HomePage ;
+export default HomePage;

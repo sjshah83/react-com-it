@@ -37,7 +37,7 @@ html {
   line-height: 2.5;
 }
 
-body {
+.bodyBackground {
   width: 100%;
   background-image: url("../images/travel-horizen.jpg");
   background-size: "cover";
