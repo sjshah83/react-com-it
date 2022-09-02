@@ -16,6 +16,14 @@ root.render(
         <Route path="/" element={<App />}>
           <Route path="/expenses" element={<Expenses />} />
           <Route path="invoices" element={<Invoices />}>
+            <Route
+              index
+              element={
+                <div style={{ padding: "1rem" }}>
+                  <p>Select an invoice</p>
+                </div>
+              }
+            />
             <Route path=":invoiceId" element={<Invoice />} />
           </Route>
           <Route path="/*" element={
