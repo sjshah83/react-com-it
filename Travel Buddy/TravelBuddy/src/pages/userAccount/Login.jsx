@@ -32,7 +32,7 @@ const ModalLoginForm = () => {
     let navigate = useNavigate();
 
     let handleLogin = () => {
-        if (userName.current.value == "abs@gmail.com" && userPasswd.current.value == "123") {
+        if (userName.current.value === "abs@gmail.com" && userPasswd.current.value === "123") {
             navigate("/dashboard");
         } else {
             alert("Not valid username or password");

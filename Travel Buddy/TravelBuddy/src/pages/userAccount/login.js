@@ -1,6 +1,6 @@
 import "../../css/Login.css";
 import React from "react";
-import { ModalHeader, ModalLoginForm, ModalFooter } from "../login/Login.jsx"
+import { ModalHeader, ModalLoginForm, ModalFooter } from "./Login.jsx"
 
 export const Login = () => {
   return (
