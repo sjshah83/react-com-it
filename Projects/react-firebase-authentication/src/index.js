@@ -13,25 +13,28 @@ import HomePage from './components/Home';
 import AccountPage from './components/Account';
 import AdminPage from './components/Admin';
 import Navigation from './components/Navigation';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <div>
-        <Navigation />
-        <hr />
-      </div>
-      <Routes>
-        <Route exact path={ROUTES.LANDING} element={<LandingPage />} />
-        <Route path={ROUTES.SIGN_UP} element={<SignUpPage/>} />
-        <Route path={ROUTES.SIGN_IN} element={<SignInPage/>} />
-        <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForgetPage/>} />
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.ACCOUNT} element={<AccountPage/>} />
-        <Route path={ROUTES.ADMIN} element={<AdminPage/>} />
-      </Routes>
-    </BrowserRouter>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <BrowserRouter>
+        <div>
+          <Navigation />
+          <hr />
+        </div>
+        <Routes>
+          <Route exact path={ROUTES.LANDING} element={<LandingPage />} />
+          <Route path={ROUTES.SIGN_UP} element={<SignUpPage />} />
+          <Route path={ROUTES.SIGN_IN} element={<SignInPage />} />
+          <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForgetPage />} />
+          <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.ACCOUNT} element={<AccountPage />} />
+          <Route path={ROUTES.ADMIN} element={<AdminPage />} />
+        </Routes>
+      </BrowserRouter>
+    </FirebaseContext.Provider>
   </React.StrictMode>
 );
 
