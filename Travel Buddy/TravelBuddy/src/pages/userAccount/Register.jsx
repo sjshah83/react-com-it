@@ -1,12 +1,15 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ModalHeader = () => {
+    let navigate = useNavigate();
+    let handleClose = () => {
+        navigate("/");
+    };
     return (
-
         <div class="modal-top">
             <div class="modal-title">Register Yourself to Travel Buddy</div>
-            <button class="modal-close" type="button">
+            <button class="modal-close" type="button" onClick={handleClose}>
                 <span class="material-icons">close</span>
             </button>
         </div>
@@ -18,8 +21,9 @@ const ModalFooter = () => {
     return (
 
         <div class="modal-bottom">
-            New to Travel Buddy?&nbsp;
-            <a href="register.html" class="blue-link">Create an account</a>
+            Already have a TravelBuddy account?&nbsp;
+            <Link to="/login" className="blue-link">Log In</Link>
+            Into your account
         </div>
 
     );
@@ -38,7 +42,20 @@ const ModalRegisterForm = () => {
     return (
 
         <div class="modal-content">
-            <h1>Register Yourself</h1>
+            
+            <form class="full-width">
+                <input name="fname" type="text" class="input-style" placeholder="First name" maxlength="200" value="" required/>
+                <input name="last_name" type="text" class="input-style" placeholder="Last name" maxlength="200" value="" required/>
+                <input name="email" type="email" class="input-style" placeholder="Email" maxlength="100" value="" required/>
+                <input name="password" type="password" class="input-style" placeholder="Password" value="" required/>
+                <button type="submit" class="modal-button2">
+                    <span class="ps-button-text ellipsis">Sign up</span>
+                </button>
+
+            </form>
+
+
+
         </div>
 
     );

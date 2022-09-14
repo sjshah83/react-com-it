@@ -1,12 +1,16 @@
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ModalHeader = () => {
+    let navigate = useNavigate();
+    let handleClose = () => {
+        navigate("/");
+    };
     return (
 
         <div class="modal-top">
             <div class="modal-title">Sign-In To Travel Buddy</div>
-            <button class="modal-close" type="button">
+            <button class="modal-close" type="button" onClick={handleClose}>
                 <span class="material-icons">close</span>
             </button>
         </div>
@@ -19,7 +23,7 @@ const ModalFooter = () => {
 
         <div class="modal-bottom">
             New to Travel Buddy?&nbsp;
-            <a href="register.html" class="blue-link">Create an account</a>
+            <Link to="/register" className="blue-link">Register Yourself</Link>
         </div>
 
     );
@@ -63,7 +67,7 @@ const ModalLoginForm = () => {
                     ref={userPasswd}
                 />
 
-                <button type="submit" class="modal-button" onClick={handleLogin}>
+                <button type="submit" class="modal-button2" onClick={handleLogin}>
                     Sign in
                 </button>
             </form>
