@@ -19,7 +19,6 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <div>
-
         <Navigation />
         <hr />
       </div>

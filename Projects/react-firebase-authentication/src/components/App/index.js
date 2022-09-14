@@ -1,16 +1,10 @@
 import React from 'react';
 
-
-import Navigation from '../Navigation'
-
-
 const App = () => (
-    <div>
-      
+   /* <div>
       <hr />
-      <Outlet/>
-       
-    </div>
+      <Outlet/>   
+    </div>*/
 );
 
 export default App;
