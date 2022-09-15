@@ -20,7 +20,8 @@ export const Recomondations = () => {
     };
     
     return (
-
+    
+        //    <div className='containerStyles'>
         <div style={containerStyles}>
             <ImageSlider slides={slides} />
         </div>
