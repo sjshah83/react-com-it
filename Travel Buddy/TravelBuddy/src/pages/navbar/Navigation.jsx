@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import "../../../css/Dashboard.css";
+import '../../css/Dashboard.css';
 
 const Navigation = () => {
   return (
     <div class="navigation">
       <div class="wrapper2">
         <div class="logo">
-          <img alt="Logo" src={require("../../../images/travelbuddy.png")} />
+          <img alt="Logo" src={require("../../images/travelbuddy.png")} />
         </div>
         <button class="compose">
           Add Journal
