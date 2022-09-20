@@ -83,6 +83,8 @@ html {
 
 .my-logo > img {
   width: 150px;
+  vertical-align: middle;
+  margin: auto;
 }
 
 .my-login-button {
@@ -99,6 +101,7 @@ html {
   /*-webkit-transition: 0.2s all ease-in-out;*/
   position: relative;
   top: 1em;
+  margin-right: auto;
 }
 
 .my-register-button {

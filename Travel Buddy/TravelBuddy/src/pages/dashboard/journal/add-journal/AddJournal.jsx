@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css/AddJournal.css";
+import "../../../../css/AddJournal.css";
 
 export const AddJournalForm = () => {
 
@@ -9,7 +9,7 @@ export const AddJournalForm = () => {
   const [privacySetting, setPrivacySetting] = useState("shared");
   const [publishJournal, setPublishJournal] = useState("live");
   const [titleImagePath, setTitleImagePath] = useState(
-    require("../../images/imageUploadIcon.png")
+    require("../../../../images/imageUploadIcon.png")
   );
 
   let navigate = useNavigate();

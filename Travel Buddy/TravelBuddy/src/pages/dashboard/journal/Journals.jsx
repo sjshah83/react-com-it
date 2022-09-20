@@ -1,8 +1,8 @@
 
 import { useState, useEffect } from 'react';
-import dataBase from '../../config/firebase'
-import JournalThumbnail from './journalThumbnail';
-import "../../css/AddJournal.css";
+import dataBase from '../../../config/firebase'
+import JournalThumbnail from './JournalThumbnail';
+import "../../../css/AddJournal.css";
 
 export const Journals = () => {
 
@@ -21,12 +21,10 @@ export const Journals = () => {
 
     const jContainer = {
         display: "flex",
-        justifyContent: "center",   
-        // border:"3px solid green",
-        // display: "grid",
-        // gridTemplateRows: "1fr 1fr 1fr",
-        // gridTemplateColumns: "1fr 1fr 1fr",
-        // gridGap: "2px",  
+        justifyContent: "center",  
+        flexFlow: "row wrap",
+        margin : "10em" ,
+        // border:"3px solid green", 
     }; 
 
     return (
@@ -39,6 +37,7 @@ export const Journals = () => {
         <div style={jContainer}>
             {
                 journals.map((journal) => {
+                    // console.log("Journals : ",journal)
                     return (
                         <JournalThumbnail journal={journal} />
                     );

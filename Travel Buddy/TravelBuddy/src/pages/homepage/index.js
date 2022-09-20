@@ -2,6 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom"
 
 export const HomePage = () => {
+    const my_login_button={
+        textDecoration: "none",
+        fontFamily: "Label",
+        fontSize: "1.5em",
+        lineHeight: "1em",
+        color: "#e0844eec",
+        padding: "0.5em 2em",
+        borderRadius: "30px",
+        border: "5px solid #e0844eec",
+        background: "#ffffff",
+        cursor: "pointer",
+        /*-webkit-transition: 0.2s all ease-in-out;*/
+        position: "relative",
+        // top: "1em",
+        marginRight:"2px",
+    }    
+    const my_register_button={
+        textDecoration: "none",
+        fontFamily: "Label",
+        fontSize: "1.8em",
+        lineHeight: "1.2em",
+        color: "#ffffff",
+        padding: "1em 3em",
+        borderRadius: "30px", 
+        background: "#ffffff",
+        cursor: "pointer",
+        position: "relative",
+        // top: "1em",
+        backgroundImage: "linear-gradient(120deg,#e0844eec 0%,#52419c 78%,#402a72 100%)",
+    
+    }
+    const my_headerLinks={
+        verticalAlign: "middle",
+        margin:"1em",
+    }
     return (
         <div className="my-body-background">
             <nav className="my-nav">
@@ -9,9 +44,9 @@ export const HomePage = () => {
                     <div className="my-logo">
                         <img src={require('../../images/travelbuddy.png')} alt="travelBuddy-Logo" />
                     </div>
-                    <div className="my-headerLinks">
-                        <Link to="/login" class="my-login-button">Login</Link>
-                        <Link to="/register" class="my-register-button">Register Yourself</Link>
+                    <div style={my_headerLinks}>
+                        <Link to="/login" style={my_login_button}>Login</Link>
+                        <Link to="/register" style={my_register_button}>Register Yourself</Link>
                     </div>
                 </div>
             </nav>

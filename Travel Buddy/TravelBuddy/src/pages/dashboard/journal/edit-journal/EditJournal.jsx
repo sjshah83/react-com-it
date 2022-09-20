@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
-import "../../../node_modules/react-quill/dist/quill.snow.css";
-import "../../css/EditJournal.css";
+import "../../../../../node_modules/react-quill/dist/quill.snow.css";
+import "../../../../css/EditJournal.css";
 
 export const EditJournalForm = () => {
   const { state } = useLocation();

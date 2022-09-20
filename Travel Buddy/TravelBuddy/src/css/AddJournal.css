@@ -10,6 +10,7 @@
 
 .container-inner {
   width: 100%;
+  max-width: 900px;
   padding: 5px;
   margin: auto;
 }
