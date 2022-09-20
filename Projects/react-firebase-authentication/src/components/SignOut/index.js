@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SignOut = () => (
-  <div>
-    <h1>Sign Out</h1>
-  </div>
+const SignOutButton = ({ fireBase }) => (
+  <button>
+    
+  </button>
 );
 
 export default SignOut;
