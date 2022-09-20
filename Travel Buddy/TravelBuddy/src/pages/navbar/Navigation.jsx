@@ -9,12 +9,14 @@ const Navigation = () => {
         <div class="logo">
           <img alt="Logo" src={require("../../images/travelbuddy.png")} />
         </div>
-        <button class="compose">
-          Add Journal
-          <span class="plus">
-            <img alt ="add" src="https://i.ibb.co/v1HxGWj/add-1.png" />
-          </span>
-        </button>
+        <Link to="/dashboard/addJournal">
+          <button class="compose">
+            Add Journal
+            <span class="plus">
+              <img alt="add" src="https://i.ibb.co/v1HxGWj/add-1.png" />
+            </span>
+          </button>
+        </Link>
         <div class="list-title">YOUR CHOICES</div>
         <div class="list">
           <ul>

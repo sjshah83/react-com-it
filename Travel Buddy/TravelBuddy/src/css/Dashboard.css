@@ -75,6 +75,7 @@ body {
   font-size: 16px;
   padding-left: 20px;
   position: relative;
+  cursor: pointer;
 }
 
 .plus > img {

@@ -1,5 +1,52 @@
+
+import { useState, useEffect } from 'react';
+import dataBase from '../../config/firebase'
+import JournalThumbnail from './journalThumbnail';
+import "../../css/AddJournal.css";
+
 export const Journals = () => {
-    return(
-        <h1>Journals</h1>
+
+    const [isLoaded, setLoaded] = useState('false');
+    const [journals, setJournals] = useState([]);
+
+    useEffect(() => {
+        getJournals();
+    }, []);
+
+    const getJournals = async () => {
+        const response = dataBase.collection('journals');
+        const data = await response.get();
+        setJournals(data.docs.map((doc) => ({ id: doc.id ,...doc.data()})))
+    }
+
+    const jContainer = {
+        display: "flex",
+        justifyContent: "center",   
+        // border:"3px solid green",
+        // display: "grid",
+        // gridTemplateRows: "1fr 1fr 1fr",
+        // gridTemplateColumns: "1fr 1fr 1fr",
+        // gridGap: "2px",  
+    }; 
+
+    return (
+        <section class="container-outer">
+        <div class="container-inner">
+          <div className="heading-container">
+            <h1 className="heading">Browse Journals</h1>
+          </div>
+        </div>
+        <div style={jContainer}>
+            {
+                journals.map((journal) => {
+                    return (
+                        <JournalThumbnail journal={journal} />
+                    );
+                })
+            }
+        </div>
+        </section>
     )
 }
+
+export default Journals;

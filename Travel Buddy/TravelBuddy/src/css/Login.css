@@ -3,7 +3,7 @@
     src: url("../fonts/SansSerifFLF.otf");
   }
   
-  .modal {
+  .my-modal {
     --gap: 15px;
     position: fixed;
     top: 0;
@@ -19,7 +19,7 @@
     font-family: "Heading";
   }
   
-  .modal-inner {
+  .my-modal-inner {
     background: #ffffff;
     width: 100%;
     max-width: 400px;
@@ -28,19 +28,19 @@
     border-radius: 12px 12px;
   }
   
-  .modal-top {
+  .my-modal-top {
     display: flex;
     align-items: center;
     background: #aaaaaa;
   }
   
-  .modal-title {
+  .my-modal-title {
     flex-grow: 1;
     padding: 0 var(--gap);
     font-size: 20px;
   }
   
-  .modal-close {
+  .my-modal-close {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -50,12 +50,12 @@
     outline: none;
   }
   
-  .modal-content {
+  .my-modal-content {
     padding: var(--gap);
     line-height: 1.5em;
   }
   
-  .modal-bottom {
+  .my-modal-bottom {
     padding: 0 var(--gap) var(--gap) var(--gap);
     background: #e7eaee;
     font-size: 12px;
@@ -68,7 +68,7 @@
     text-align: center;
   }
   
-  .modal-button {
+  .my-modal-button {
     display: inline-block;
     padding: 6px 12px;
     background: #009578;
@@ -80,7 +80,7 @@
     font-size: 18px;
   }
 
-  .modal-button2{
+  .my-modal-button2{
     height: 48px;
     padding: 0 24px;
     padding-top: 14px;

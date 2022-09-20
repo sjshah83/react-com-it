@@ -8,6 +8,8 @@ import { Trips } from "./pages/dashboard/trips";
 import { Journals } from "./pages/dashboard/journals";
 import { Recomondations } from "./pages/dashboard/recomondations";
 import Register from "./pages/userAccount/register";
+import AddJournalForm from "./pages/add-journal/AddJournal";
+import EditJournalForm from "./pages/edit-journal/EditJournal";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="trips" element={<Trips />} />
         <Route path="journals" element={<Journals />} />
         <Route path="recomondations" element={<Recomondations />} />
+        <Route path="addJournal" element={<AddJournalForm />} />
+        <Route path="editJournal" element={<EditJournalForm />} />
         <Route
           path="*"
           element={

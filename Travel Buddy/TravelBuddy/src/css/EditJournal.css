@@ -1,0 +1,137 @@
+:root {
+  --yelow: #eab308;
+  --purple: #a855f7;
+  --orange: #f97316;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --indigo: #6366f1;
+}
+
+.quillTextBox {
+  width: 100%;
+  min-width: fit-content;
+  height: 100%;
+}
+
+.quil-contailer {
+  width: 100%;
+  padding: 0px 40px;
+}
+
+.outer-container {
+  width: 100%;
+  overflow: scroll;
+}
+
+.heading-container {
+  width: 100%;
+  padding: 40px 40px 0px 40px;
+  display: flex;
+}
+
+.heading {
+  display: flex;
+  width: 100%;
+}
+
+.save-button {
+  margin-bottom: 48px;
+  font-size: 20px;
+  margin-left: auto;
+  color: white;
+  background-color: gray;
+  padding-top: 6px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 2px;
+}
+
+button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.yellow-text {
+  color: var(--yelow);
+}
+
+.yellow-b {
+  border-bottom: 2px solid var(--yelow);
+}
+
+.yellow-bg {
+  background: var(--yelow);
+}
+
+.purple-text {
+  color: var(--purple);
+}
+
+.purple-b {
+  border-bottom: 2px solid var(--purple);
+}
+
+.purple-bg {
+  background: var(--[purple]);
+}
+
+.orange-text {
+  color: var(--orange);
+}
+
+.orange-b {
+  border-bottom: 2px solid var(--orange);
+}
+
+.orange-bg {
+  background: var(--orange);
+}
+
+.green-text {
+  color: var(--green);
+}
+
+.green-b {
+  border-bottom: 2px solid var(--green);
+}
+
+.green-bg {
+  background: var(--green);
+}
+
+.red-text {
+  color: var(--red);
+}
+
+.red-b {
+  border-bottom: 2px solid var(--red);
+}
+
+.red-bg {
+  background: var(--red);
+}
+
+.blue-text {
+  color: var(--blue);
+}
+
+.blue-b {
+  border-bottom: 2px solid var(--blue);
+}
+
+.blue-bg {
+  background: var(--blue);
+}
+
+.indigo-text {
+  color: var(--indigo);
+}
+
+.indigo-b {
+  border-bottom: 2px solid var(--indigo);
+}
+
+.indigo-bg {
+  background: var(--indigo);
+}

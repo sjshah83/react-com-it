@@ -7,9 +7,9 @@ const ModalHeader = () => {
         navigate("/");
     };
     return (
-        <div class="modal-top">
-            <div class="modal-title">Register Yourself to Travel Buddy</div>
-            <button class="modal-close" type="button" onClick={handleClose}>
+        <div class="my-modal-top">
+            <div class="my-modal-title">Register Yourself to Travel Buddy</div>
+            <button class="my-modal-close" type="button" onClick={handleClose}>
                 <span class="material-icons">close</span>
             </button>
         </div>
@@ -20,7 +20,7 @@ const ModalHeader = () => {
 const ModalFooter = () => {
     return (
 
-        <div class="modal-bottom">
+        <div class="my-modal-bottom">
             Already have a TravelBuddy account?&nbsp;
             <Link to="/login" className="blue-link">Log In</Link>
             Into your account
@@ -41,14 +41,15 @@ const ModalRegisterForm = () => {
 
     return (
 
-        <div class="modal-content">
+        <div class="my-modal-content">
             
             <form class="full-width">
                 <input name="fname" type="text" class="input-style" placeholder="First name" maxlength="200" value="" required/>
                 <input name="last_name" type="text" class="input-style" placeholder="Last name" maxlength="200" value="" required/>
                 <input name="email" type="email" class="input-style" placeholder="Email" maxlength="100" value="" required/>
                 <input name="password" type="password" class="input-style" placeholder="Password" value="" required/>
-                <button type="submit" class="modal-button2">
+                <input name="password2" type="password2" class="input-style" placeholder="Repeat Password" value="" required/>
+                <button type="submit" class="my-modal-button2">
                     <span class="ps-button-text ellipsis">Sign up</span>
                 </button>
 

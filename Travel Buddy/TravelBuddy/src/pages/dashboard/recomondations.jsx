@@ -13,15 +13,15 @@ export const Recomondations = () => {
     ];
 
     const containerStyles = {
-        width: "500px",
-        height: "280px",
+        width: "800px",
+        height: "480px",
         margin: "0 auto",
-        alignItems: "center",  
+        alignItems: "center",
     };
-    
+
     return (
-    
-        //    <div className='containerStyles'>
+
+        //<div className='containerStyles'>
         <div style={containerStyles}>
             <ImageSlider slides={slides} />
         </div>

@@ -27,26 +27,26 @@
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 html {
-  font-family: "Open Serif";
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  line-height: 2.5;
+  font-family: "Open Serif" !important; 
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+  line-height: 2.5 !important;
 }
 
-.bodyBackground {
+.my-body-background{
   width: 100%;
   background-image: url("../images/travel-horizen.jpg");
-  background-size: "cover";
+  background-size: cover !important;
   height: 100vh;
   background-position-y: 10em;
   background-repeat: no-repeat;
 }
 
-footer {
+.my-footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -60,29 +60,16 @@ footer {
   );
 }
 
-nav {
+.my-nav {
   margin-top: 0.5em;
   margin-bottom: 20px;
   padding: 0.5em;
   position: sticky;
   top: 20px;
   background-color: white;
-  /* border-top: 5px solid;
-  border-bottom: 5px solid;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(
-    120deg,
-    #5271c4 0%,
-    #b19fff 48%,
-    #eca1fe 100%
-  );*/
 }
 
-/*nav div {
-  border: 2px dashed green;
-}*/
-
-.headerWrap {
+.my-headerWrap {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -90,15 +77,15 @@ nav {
   padding: 0.5em;
 }
 
-.headerLinks {
+.my-headerLinks {
   vertical-align: middle;
 }
 
-.logo > img {
+.my-logo > img {
   width: 150px;
 }
 
-.login {
+.my-login-button {
   text-decoration: none;
   font-family: "Label";
   font-size: 1.5em;
@@ -114,7 +101,7 @@ nav {
   top: 1em;
 }
 
-.register {
+.my-register-button {
   text-decoration: none;
   font-family: "Label";
   font-size: 1.8em;
@@ -133,42 +120,51 @@ nav {
   top: 1em;
 }
 
-section {
+.my-section {
   display: inline;
   float: left;
   margin-top: 5em;
+  font-family: "Open Serif" !important; 
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+  line-height: 2.5 !important;
 }
 
-h1 {
+.my-heading {
   font-family: "Heading";
   font-size: 4em;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  margin-top: 1em;
   line-height: 1.2em;
   font-weight: 600;
   padding-right: 15px;
   padding-left: 15px;
+  color: black;
 }
 
-.container {
+.my-container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.banner-wrap {
+.my-banner-wrap {
   width: 50%;
 }
 
-.banner-heading {
+.my-banner-heading {
   font-weight: 700;
   font-size: 3em;
   text-shadow: rgb(0, 0, 0) 0px 0px 2em;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
+  letter-spacing: 0.1em !important;
+  line-height: 2.5 !important;
 }
 
-.banner-subinfo {
+.my-banner-subinfo {
+  margin-top: 1em;
   font-size: 1.5em;
   font-weight: 400;
   text-shadow: rgb(0, 0, 0) 0px 0px 1em;

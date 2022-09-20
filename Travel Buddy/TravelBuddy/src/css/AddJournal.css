@@ -1,0 +1,172 @@
+.selected {
+  border: 2px solid black !important;
+}
+
+.container-outer {
+  font: inherit;
+  overflow: hidden;
+  color: rgb(107, 114, 128);
+}
+
+.container-inner {
+  width: 100%;
+  padding: 5px;
+  margin: auto;
+}
+
+.heading-container {
+  width: 100%;
+}
+
+.heading {
+  border-bottom: 2px solid rgb(107, 114, 128);
+}
+
+.form-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title-image {
+  padding: 0px 5px;
+  display: flex;
+  cursor: pointer;
+}
+
+.form-inner-container {
+  width: 100%;
+  padding: 6px 0px 6px 10px;
+  margin-top: 6px;
+}
+
+.title-container {
+  position: relative;
+}
+
+.title-input-box {
+  display: block;
+  padding: 2px;
+  width: 100%;
+  color: #111827;
+  font-size: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+input:focus {
+  border: 1px solid #3b82f6;
+}
+
+.privacy-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 4px 0px;
+}
+
+.privacy-inner-container {
+  display: flex;
+  align-items: center;
+}
+
+.privacy-label {
+  display: flex;
+  padding-right: 10px;
+}
+
+.privacy-buttons-container {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.privacy-buttons {
+  padding: 0px 10px;
+  margin: 0px 2px;
+  border: 1px solid #9ca3af;
+  color: #9ca3af;
+}
+
+.privacy-buttons-selected {
+  padding: 0px 10px;
+  margin: 0px 2px;
+  border: 1px solid #f87171;
+  color: #f87171;
+}
+
+.privacy-information {
+  margin: 10px 0px;
+  line-height: 1.625px;
+}
+
+.color-buttons-container {
+  display: flex;
+  margin-top: 24px;
+  align-items: center;
+  padding: 10px 0px;
+  border-top: 2px solid #d1d5db;
+  border-bottom: 2px solid #d1d5db;
+  margin-bottom: 20px;
+}
+
+.color-label {
+  margin-right: 16px;
+  padding-right: 56px;
+}
+
+button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.color-button {
+  border: 2px solid #d1d5db;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  margin: 0px 1px;
+}
+
+.color-indigo {
+  background-color: #6366f1;
+}
+
+.color-blue {
+  background-color: #3b82f6;
+}
+
+.color-red {
+  background-color: #ef4444;
+}
+
+.color-green {
+  background-color: #22c55e;
+}
+
+.color-orange {
+  background-color: #f97316;
+}
+
+.color-purple {
+  background-color: #a855f7;
+}
+
+.color-yellow {
+  background-color: #eab308;
+}
+
+.submit-button {
+  display: flex;
+  margin-left: auto;
+  color: white;
+  background-color: #6b7280;
+  padding: 4px 40px;
+}
+
+.submit-button:hover {
+  background-color: #dc2626;
+  border-radius: 4px;
+}
