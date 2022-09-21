@@ -4,21 +4,21 @@ import '../../css/Dashboard.css';
 
 const Navigation = () => {
   return (
-    <div class="navigation">
-      <div class="wrapper2">
-        <div class="logo">
+    <div className="navigation">
+      <div className="wrapper2">
+        <div className="logo">
           <img alt="Logo" src={require("../../images/travelbuddy.png")} />
         </div>
         <Link to="/dashboard/addJournal">
-          <button class="compose">
+          <button className="compose">
             Add Journal
-            <span class="plus">
+            <span className="plus">
               <img alt="add" src="https://i.ibb.co/v1HxGWj/add-1.png" />
             </span>
           </button>
         </Link>
-        <div class="list-title">YOUR CHOICES</div>
-        <div class="list">
+        <div className="list-title">YOUR CHOICES</div>
+        <div className="list">
           <ul>
             <li>
               <NavLink

@@ -1,20 +1,48 @@
 import { useLocation, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import parse from 'html-react-parser';
 import dataBase from '../../../../config/firebase';
-import { useEffect } from "react";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
+// import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
 
 export const ViewJournalPage = (props) => {
 
-  const location = useLocation();
+  /* COde To Get State Object From Location */
+  
+  // const location = useLocation();
+  // const data = location.state?.data;
+  
+  const params = useParams();
+  const [journals, setJournals] = useState([]);
+  const [isLoaded,setIsLoaded] = useState(false);
 
-  const data = location.state?.data;
+  useEffect(() => {
+    getJournalById(params.id);
+  }, []);
+
+  
+
+  const getJournalById = async (id) => {
+
+    dataBase.collection('journals')
+      .doc(id)
+      .get()
+      .then(doc => {
+          if(doc.exists){
+            setJournals(doc.data());
+            setIsLoaded(true);
+          }
+      })
+    // const docRef = doc(dataBase, "journals", id);
+    // const docSnap = await getDoc(docRef);
+    // docSnap.data();
+    // setJournals(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+  }
 
   const timeStampToString = (timeStamp) => {
     const date = new Date(timeStamp * 1000);
     return date.getFullYear() + '.' + (date.getMonth() + 1) + '.' + date.getDate();
   };
+
 
   const image_container = {
     width: "100%",
@@ -37,7 +65,7 @@ export const ViewJournalPage = (props) => {
     // color: "#ffffff",
     cursor: "pointer",
     zIndex: "1",
-    transform: "translate(0,-50%)",
+    transform: "translate(50%,-50%)",
     left: "50%",
   };
 
@@ -51,47 +79,53 @@ export const ViewJournalPage = (props) => {
   const date = {
     textAlign: "center",
     fontSize: "2em",
-    // fontSize: "15px",
     fontWeight: "bold",
     color: "#e8e8e8",
   };
 
   const content = {
     padding: "1.5em",
-    fontSize:"14px",
     // marginLeft:"0",
     width: "100%",
     textAlign: "left",
   }
 
-  return (
-    <section class="container-outer">
-      <div class="container-inner">
-        <div className="heading-container">
-          <h1 className="heading">Journal </h1>
-        </div>
-        <div>
-          <div style={image_container}>
-            <img style={image}
-              src={data.featureImg}
-              alt="My Image"
-            />
-            <div style={information}>
-              <h1 style={title}>
-                {data.title}
-              </h1>
-              <div style={date}>
-                {timeStampToString(data.createDate.seconds)}
+
+  if(!isLoaded){
+    return(
+      <div> Loading...</div>
+    );
+  }else{
+
+    return (
+      <section class="container-outer">
+        <div class="container-inner">
+          <div className="heading-container">
+            <h1 className="heading">Journal {journals.title}</h1>
+          </div>
+          <div>
+            <div style={image_container}>
+              <img style={image}
+                src={journals.featureImg}
+                alt="My Image"
+              />
+              <div style={information}>
+                <h1 style={title}>
+                  {journals.title}
+                </h1>
+                <div style={date}>
+                  {timeStampToString(journals.createDate.seconds)}
+                </div>
               </div>
             </div>
-          </div>
-          <div style={content}>
-            {parse(data.content)}
+            <div style={content}>
+              {parse(journals.content)}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
 };
 
 export default ViewJournalPage;

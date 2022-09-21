@@ -55,16 +55,16 @@ export const HomePage = () => {
                 <h1 className="my-heading">
                     Your Own Travel Buddy Online
                 </h1>
-                <div class="my-container">
-                    <div class="my-banner-wrap">
-                        <h2 class="my-banner-heading">
+                <div className="my-container">
+                    <div className="my-banner-wrap">
+                        <h2 className="my-banner-heading">
                             Explore. Plan. Create. Inspire.
                         </h2>
-                        <p class="my-banner-subinfo">
+                        <p className="my-banner-subinfo">
                             Your own travel buddy online to help create and preserve your travel
                             experiance.
                         </p>
-                        <p class="my-banner-subinfo">
+                        <p className="my-banner-subinfo">
                             Your own travel buddy online to help create and preserve your travel
                             experiance. Don<span>&#39;</span>t let beautiful memories fade.
                             Create your own travel journal and share pictures.Create an account

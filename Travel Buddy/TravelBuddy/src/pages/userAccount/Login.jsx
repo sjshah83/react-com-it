@@ -52,7 +52,7 @@ const ModalLoginForm = () => {
                     type="text"
                     class="input-style"
                     placeholder="Email or username"
-                    maxlength="200"
+                    maxLength="200"
                     required
                     ref={userName}
                 />

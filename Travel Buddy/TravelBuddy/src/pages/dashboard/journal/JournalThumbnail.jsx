@@ -23,6 +23,11 @@ const JournalThumbnail = (props) => {
         maxHeight: "180px",
     };
 
+    const timeStampToString = (timeStamp) => {
+        const date = new Date(timeStamp * 1000);
+        return date.getFullYear() + '.' + (date.getMonth() + 1) + '.' + date.getDate();
+    };
+
     return (
 
         <Card style={journalCard}>
@@ -40,9 +45,9 @@ const JournalThumbnail = (props) => {
                 <CardImg style={journalImg} src={props.journal.featureImg} alt="Journal Image" />
             </Link>
             <CardBody>
-                <CardLink href="#">
-                    Trip Name
-                </CardLink>
+                <CardSubtitle>
+                    {timeStampToString(props.journal.createDate.seconds)}
+                </CardSubtitle>
             </CardBody>
         </Card>
 
