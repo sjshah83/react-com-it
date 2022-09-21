@@ -4,7 +4,7 @@ import { withFirebase } from '../Firebase';
 import { SignUpLink } from '../SignUp';
 import * as ROUTES from '../../constants/routes';
 
-import {useNavigate} from 'react-router-dom';
+import { withNavigate } from '../Navigation';
 
 const SignInPage = () => (
   <div>
@@ -33,7 +33,7 @@ class SignInFormBase extends Component {
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        console.log("Sign In : ");
+        this.props.navigate(ROUTES.HOME);
       })
       .catch(error => {
         this.setState({ error });
@@ -75,6 +75,6 @@ class SignInFormBase extends Component {
   }
 }
 
-const SignInForm = withFirebase(SignInFormBase);
+const SignInForm = withNavigate(withFirebase(SignInFormBase));
 
 export default SignInForm;

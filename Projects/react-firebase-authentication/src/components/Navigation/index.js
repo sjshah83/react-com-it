@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes'
 import SignOutButton from '../SignOut';
 
@@ -26,4 +26,11 @@ const Navigation = () => (
   </div>
 );
 
+const withNavigate = Component => props => {
+  const navigate = useNavigate();
+  return <Component {...props} navigate={navigate}/>;
+} 
+
 export default Navigation;
+
+export {withNavigate};
