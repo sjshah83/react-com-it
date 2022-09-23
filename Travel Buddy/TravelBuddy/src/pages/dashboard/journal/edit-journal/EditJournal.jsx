@@ -49,30 +49,32 @@ export const EditJournalForm = () => {
   const containerOuter = {
     font: "inherit",
     color: "rgb(107, 114, 128)",
-    marginTop:" 3em",
+    width: "100%",
+    maxWidth: "1000px",
+    margin: "3em auto auto auto",
+    alignItems:"center", 
+    // marginTop:"3em",
   }
 
   const mainHeadingContainer = {
     width: "100%",
-    margin:"auto",
-    
+    // display: "flex",
+    alignItems: "center",
   }
 
   const mainHeading = {
     borderBottom: "2px solid rgb(107, 114, 128)",
     fontColor: "#111827",
-    textAlign: "left",
-    margin: "3 em",
+    textAlign: "center",
     padding: "15px",
   };
 
   return (
-    <div style={{  containerOuter}}>
-      <div style={{  mainHeadingContainer}}>
-        <h1 style={{ mainHeading }}>Add Journal - Add Content (2/2)</h1>
+    <div style={containerOuter}>
+      <div style={mainHeadingContainer}>
+        <h1 style={mainHeading}>Add Journal - Add Content (2/2)</h1>
       </div>
       <div className={"outer-container " + getColor("text", theme)}>
-
         <div className="heading-container">
           <h1 className={"heading " + getColor("border", theme)}>{title}</h1>
           <div style={{ display: "flex" }}>
@@ -80,7 +82,7 @@ export const EditJournalForm = () => {
               className={"save-button " + getColor("hover:bg", theme)}
               onClick={handleSubmit}
             >
-              Save
+              SAVE
             </button>
           </div>
         </div>
@@ -95,7 +97,6 @@ export const EditJournalForm = () => {
           />
         </div>
       </div>
-
     </div>
   );
 };

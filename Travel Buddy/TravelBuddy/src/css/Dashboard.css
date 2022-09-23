@@ -21,7 +21,7 @@ body {
   background-image: linear-gradient(
     -225deg,
     #5271c4 0%,
-    #b19fff 48%,
+    #b19fff 38%,
     #eca1fe 100%
   );
   display: flex;
@@ -73,6 +73,7 @@ body {
   background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
   color: white;
   font-size: 16px;
+  font-weight: bolder;
   padding-left: 20px;
   position: relative;
   cursor: pointer;
@@ -90,6 +91,8 @@ body {
   margin-top: 30px;
   color: #b8b8b8;
   font-size: 14px;
+  font-weight: bolder;
+  margin: 4em auto 1em auto;
 }
 .list ul {
   /*border: 2px dashed red;*/
@@ -116,7 +119,8 @@ body {
 .list li a:visited,
 .list li a:focus {
   display: block;
-  background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+  /* background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%); */
+  background-image: linear-gradient(220deg , #EA8D8D , #f093fb  , #A890FE 100%);
   color: white;
   text-align: left;
   padding-top: 15px;
@@ -124,6 +128,7 @@ body {
   padding-left: 10px;
   border-radius: 15px;
   text-decoration: none;
+  font-weight: bolder;
 }
 
 .list li a:hover {
@@ -132,7 +137,7 @@ body {
   background-image: linear-gradient(
     225deg,
     #5271c4 0%,
-    #b19fff 48%,
+    #b19fff 38%,
     #eca1fe 100%
   );
 }
