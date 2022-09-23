@@ -76,7 +76,7 @@ export const EditJournalForm = () => {
       </div>
       <div className={"outer-container " + getColor("text", theme)}>
         <div className="heading-container">
-          <h1 className={"heading " + getColor("border", theme)}>{title}</h1>
+          <h1 className={"heading " + getColor("border", theme)} style={{textAlign: "center"}}>{title}</h1>
           <div style={{ display: "flex" }}>
             <button
               className={"save-button " + getColor("hover:bg", theme)}

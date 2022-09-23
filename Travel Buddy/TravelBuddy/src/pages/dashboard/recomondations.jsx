@@ -14,16 +14,21 @@ export const Recomondations = () => {
 
     const containerStyles = {
         width: "800px",
-        height: "480px",
-        margin: "0 auto",
+        height: "450px",
+        margin: "5em auto",
         alignItems: "center",
     };
 
     return (
-
-        //<div className='containerStyles'>
-        <div style={containerStyles}>
-            <ImageSlider slides={slides} />
+        <div class="container-outer">
+            <div class="container-inner">
+                <div className="heading-container">
+                    <h1 className="heading">Recomended Trips</h1>
+                </div>
+                <div style={containerStyles}>
+                    <ImageSlider slides={slides} />
+                </div>
+            </div>
         </div>
 
     );

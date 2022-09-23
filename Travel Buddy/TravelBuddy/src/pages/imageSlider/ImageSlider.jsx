@@ -1,16 +1,17 @@
 import { useState } from "react";
 import '../../css/Image-slider.css';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { GoPrimitiveDot } from 'react-icons/go';
 
 const ImageSlider = ({ slides }) => {
 
-    const [currestIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const slideStyles = {
-        backgroundImage: `url(${slides[currestIndex].url})`,
+        // backgroundImage: `url(${slides[currentIndex].url})`,
         width: "100%",
         height: "100%",
-        borderRadius: "10px",
+        borderRadius: "25px",
         backgroundSize: "cover",
         backgroundPosition: "center",
     };
@@ -42,7 +43,7 @@ const ImageSlider = ({ slides }) => {
         transform: "translate(0,-50%)"
     };
 
-    const slideLabel ={
+    const slideLabel = {
         position: "absolute",
         top: "12px",
         left: "40%",
@@ -51,24 +52,61 @@ const ImageSlider = ({ slides }) => {
         zIndex: "1",
     };
 
+    const dotsContainerStyle = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    };
+
+    const dotStyle = {
+        margin: "2em 5px",
+        cursor: "pointer",
+        fontSize: "30px",
+        justifyContent: "center",
+        alignItems: "center",
+    }
+
     const goToPrevious = () => {
-        const isFirstSlide = currestIndex === 0;
-        const newIndex = isFirstSlide ? slides.length - 1 : currestIndex - 1;
+        const isFirstSlide = currentIndex === 0;
+        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
         setCurrentIndex(newIndex);
     };
 
     const goToNext = () => {
-        const isLastSlide = currestIndex === slides.length - 1;
-        const newIndex = isLastSlide ? 0 : currestIndex + 1;
+        const isLastSlide = currentIndex === slides.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
         setCurrentIndex(newIndex);
+    };
+
+    const goToSlide = (slideIndex) => {
+        setCurrentIndex(slideIndex);
     };
 
     return (
         <div style={sliderStyles}>
             <FaArrowAltCircleLeft style={leftArrowStyles} onClick={goToPrevious} />
             <FaArrowAltCircleRight style={rightArrowStyles} onClick={goToNext} />
-            <div style={slideStyles}></div>
-            <div style={slideLabel}>{slides[currestIndex].title}</div>
+            <div style={slideLabel}>{slides[currentIndex].title}</div>
+            {/* <div style={slideStyles}></div> */}
+            {
+                slides.map((slide, index) => {
+                    return (
+                        <div
+                            className={index === currentIndex ? 'slideStyleAnimation active  ' : 'slideStyleAnimation'}
+                            // style={slideStyles}
+                            key={index}
+                        >
+                            {index === currentIndex && (<img src={slides[currentIndex].url} style={slideStyles} />)}
+                        </div>
+                    )
+                })
+            }
+
+            <div style={dotsContainerStyle}>
+                {slides.map((slide, slideIndex) => (
+                    <GoPrimitiveDot key={slideIndex} style={dotStyle} onClick={() => goToSlide(slideIndex)} />
+                ))}
+            </div>
         </div>
     );
 }

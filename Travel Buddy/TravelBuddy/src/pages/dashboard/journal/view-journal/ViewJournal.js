@@ -17,6 +17,10 @@ export const ViewJournalPage = (props) => {
 
   useEffect(() => {
     getJournalById(params.id);
+    console.log(journals.featureImg,"Img path");
+    if(journals.featureImg==='undefined'){
+
+    }
   }, []);
 
   
@@ -46,27 +50,30 @@ export const ViewJournalPage = (props) => {
 
   const image_container = {
     width: "100%",
-    position: "reletive",
-    textAlign: "center",
+    height:"100%",
+    alignItems:"center",
   };
 
   const image = {
+    position: "reletive",
     opacity: "0.6",
-    borderRedius: "5px",
-    objectFit: "none",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
     maxHeight: "500px",
-    maxWidth: "800px !important",
+    maxWidth: "800px",
     width: "100%",
+    borderRadius: "20px",
+    border : "3px solid",
+    borderRadius: "20px",
   };
 
   const information = {
     position: "absolute",
-    top: "50%",
-    // color: "#ffffff",
+    top: "35%",
+    left: "57%",
+    transform: "translate(0, 0)",
     cursor: "pointer",
     zIndex: "1",
-    transform: "translate(50%,-50%)",
-    left: "50%",
   };
 
   const title = {
@@ -90,7 +97,6 @@ export const ViewJournalPage = (props) => {
     textAlign: "left",
   }
 
-
   if(!isLoaded){
     return(
       <div> Loading...</div>
@@ -98,9 +104,10 @@ export const ViewJournalPage = (props) => {
   }else{
 
     return (
+      
       <section class="container-outer">
-        <div class="container-inner">
-          <div className="heading-container">
+        <div className="container-inner">
+          <div className="heading-container"  style={{ marginBottom:"2em"}}>
             <h1 className="heading">Journal {journals.title}</h1>
           </div>
           <div>
@@ -108,6 +115,7 @@ export const ViewJournalPage = (props) => {
               <img style={image}
                 src={journals.featureImg}
                 alt="My Image"
+                onError={(e)=>{e.target.onerror = null; e.target.src="http://localhost:3000/image-not-found.jpg"}}
               />
               <div style={information}>
                 <h1 style={title}>
