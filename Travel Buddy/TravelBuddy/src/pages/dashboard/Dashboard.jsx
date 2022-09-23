@@ -9,7 +9,7 @@ export const Dashboard = () => {
         <Sidebar />
         <Navigation />
       </div>
-      <div style={{height:'100%', width:'100%'}}>
+      <div style={{height:'100%', width:'100%',  overflow:"scroll"}}>
         <Outlet />
       </div>
     </div>

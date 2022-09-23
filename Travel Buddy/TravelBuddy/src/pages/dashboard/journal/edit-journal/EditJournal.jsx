@@ -3,110 +3,99 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "../../../../../node_modules/react-quill/dist/quill.snow.css";
 import "../../../../css/EditJournal.css";
+import { collection, addDoc } from "firebase/firestore"
+import dataBase from '../../../../config/firebase'
+import getColor, { setMyTheme } from '../JournalHelper'
 
 export const EditJournalForm = () => {
-  const { state } = useLocation();
-  const [body, setBody] = useState("");
 
-  const getColor = (prefix) => {
-    switch (state.color) {
-      case 1: {
-        if (prefix === "text") {
-          return "indigo-text";
-        } else if (prefix === "border") {
-          return "indigo-b";
-        } else {
-          return "indigo-bg";
-        }
-      }
-      case 2:
-        if (prefix === "text") {
-          return "blue-text";
-        } else if (prefix === "border") {
-          return "blue-b";
-        } else {
-          return "blue-bg";
-        }
-      case 3:
-        if (prefix === "text") {
-          return "red-text";
-        } else if (prefix === "border") {
-          return "red-b";
-        } else {
-          return "red-bg";
-        }
-      case 4:
-        if (prefix === "text") {
-          return "green-text";
-        } else if (prefix === "border") {
-          return "green-b";
-        } else {
-          return "green-bg";
-        }
-      case 5:
-        if (prefix === "text") {
-          return "orange-text";
-        } else if (prefix === "border") {
-          return "orange-b";
-        } else {
-          return "orange-bg";
-        }
-      case 6:
-        if (prefix === "text") {
-          return "purple-text";
-        } else if (prefix === "border") {
-          return "purple-b";
-        } else {
-          return "purple-bg";
-        }
-      case 7:
-        if (prefix === "text") {
-          return "yellow-text";
-        } else if (prefix === "border") {
-          return "yellow-b";
-        } else {
-          return "yellow-bg";
-        }
-      default:
-        if (prefix === "text") {
-          return "indigo-text";
-        } else if (prefix === "border") {
-          return "indigo-b";
-        } else {
-          return "indigo-bg";
-        }
-    }
-  };
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const [content, setContent] = useState("");
+
+
+  const [userId, setUserId] = useState("Shital Shah");
+  const [theme, setTheme] = useState(setMyTheme(state.color));
+  const [title, setTitle] = useState(state.title);
+  const [isPublish, setIsPublish] = useState(state.isPublish);
+  const [createDate, setCreateDate] = useState(new Date());
+  const [featureImage, setFeatureImage] = useState(state.featureImage);
+
 
   const handleBody = (e) => {
-    setBody(e);
+    console.log(e, "Content");
+    setContent(e);
   };
 
-  const handleSubmit = () => {};
+  const createJournal = async () => {
+    const journalRef = collection(dataBase, 'journals');
+    await addDoc(journalRef, {
+      title: title,
+      isPublish: isPublish,
+      theme: theme,
+      createDate: createDate,
+      featureImg: featureImage,
+      content: content,
+      userId: userId,
+      modifiedDate: new Date(),
+    })
+  }
+
+  const handleSubmit = () => {
+    createJournal();
+    navigate("/dashboard");
+  };
+
+  const containerOuter = {
+    font: "inherit",
+    color: "rgb(107, 114, 128)",
+    marginTop:" 3em",
+  }
+
+  const mainHeadingContainer = {
+    width: "100%",
+    margin:"auto",
+    
+  }
+
+  const mainHeading = {
+    borderBottom: "2px solid rgb(107, 114, 128)",
+    fontColor: "#111827",
+    textAlign: "left",
+    margin: "3 em",
+    padding: "15px",
+  };
 
   return (
-    <div className={"outer-container " + getColor("text")}>
-      <div className="heading-container">
-        <h1 className={"heading " + getColor("border")}>{state.title}</h1>
-        <div style={{ display: "flex" }}>
-          <button
-            className={"save-button " + getColor("hover:bg")}
-            onClick={handleSubmit}
-          >
-            Save
-          </button>
+    <div style={{  containerOuter}}>
+      <div style={{  mainHeadingContainer}}>
+        <h1 style={{ mainHeading }}>Add Journal - Add Content (2/2)</h1>
+      </div>
+      <div className={"outer-container " + getColor("text", theme)}>
+
+        <div className="heading-container">
+          <h1 className={"heading " + getColor("border", theme)}>{title}</h1>
+          <div style={{ display: "flex" }}>
+            <button
+              className={"save-button " + getColor("hover:bg", theme)}
+              onClick={handleSubmit}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+        <div className="quill-container">
+          <ReactQuill
+            className="quillTextBox"
+            placeholder="Enter journal entry here...."
+            modules={EditJournalForm.modules}
+            formats={EditJournalForm.format}
+            value={content}
+            onChange={handleBody}
+          />
         </div>
       </div>
-      <div className="quill-container">
-        <ReactQuill
-          className="quillTextBox"
-          placeholder="Enter journal entry here...."
-          modules={EditJournalForm.modules}
-          formats={EditJournalForm.format}
-          value={body}
-          onChange={handleBody}
-        />
-      </div>
+
     </div>
   );
 };

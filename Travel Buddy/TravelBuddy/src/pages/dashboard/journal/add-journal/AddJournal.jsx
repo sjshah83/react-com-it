@@ -6,9 +6,9 @@ export const AddJournalForm = () => {
 
   const inputFile = useRef(null);
   const [colorId, setColorId] = useState(1);
-  const [privacySetting, setPrivacySetting] = useState("shared");
-  const [publishJournal, setPublishJournal] = useState("live");
-  const [titleImagePath, setTitleImagePath] = useState(
+  const [isPublish, setIsPublish] = useState(true);
+  // const [publishJournal, setPublishJournal] = useState("live");
+  const [featureImage, setFeatureImage] = useState(
     require("../../../../images/imageUploadIcon.png")
   );
 
@@ -21,16 +21,16 @@ export const AddJournalForm = () => {
   const journalTitle = useRef(null);
 
   const handleImageUpload = (event) => {
-    setTitleImagePath(URL.createObjectURL(event.target.files[0]));
+    setFeatureImage(URL.createObjectURL(event.target.files[0]));
   };
 
   const handleSubmit = () => {
+    console.log(colorId,"Color IDDIDIDID : ")
     navigate("/dashboard/editJournal", {
       state: {
         color: colorId,
-        privacy: privacySetting,
-        publish: publishJournal,
-        titleImagePath: titleImagePath,
+        isPublish: isPublish,
+        featureImage: featureImage,
         title: journalTitle.current.value,
       },
     });
@@ -40,9 +40,9 @@ export const AddJournalForm = () => {
     <section class="container-outer">
       <div class="container-inner">
         <div className="heading-container">
-          <h1 className="heading">Add Journal</h1>
+          <h1 className="heading">Add Journal - Select Properties (1/2)</h1>
         </div>
-        <div class="form-container">
+        <div className="form-container">
           <input
             type="file"
             id="file"
@@ -50,9 +50,11 @@ export const AddJournalForm = () => {
             style={{ display: "none" }}
             onChange={handleImageUpload}
           />
+
           <div className="title-image" onClick={importTitleImage}>
-            <img src={titleImagePath} className="h-96" />
+            <img src={featureImage} className="image-style" />
           </div>
+
 
           <div class="form-inner-container">
             <div class="title-container">
@@ -70,37 +72,27 @@ export const AddJournalForm = () => {
                 <span className="privacy-label">THIS JOURNAL IS</span>
                 <span className="privacy-buttons-container">
                   <button
-                    className={
-                      "shared" === privacySetting
-                        ? "privacy-buttons-selected"
-                        : "privacy-buttons"
-                    }
-                    onClick={() => setPrivacySetting("shared")}
-                  >
-                    SHARED
+                    className={true === isPublish ? "privacy-buttons-selected" : "privacy-buttons"}
+                    onClick={() => setIsPublish(true)}>
+                      SHARED
                   </button>
                   <button
-                    className={
-                      "private" === privacySetting
-                        ? "privacy-buttons-selected"
-                        : "privacy-buttons"
-                    }
-                    onClick={() => setPrivacySetting("private")}
-                  >
-                    PRIVATE
+                    className={false === isPublish ? "privacy-buttons-selected" : "privacy-buttons"}
+                    onClick={() => setIsPublish(false)}>
+                      PRIVATE
                   </button>
                 </span>
               </span>
             </div>
 
             <p className="privacy-information">
-              Private journals allow only you to access the view and add new
+              Private journals allow only you to to view and add new
               entries.
             </p>
             <div className="color-buttons-container">
               <div style={{ display: "flex" }}>
-                <span className="color-label">Color</span>
-                <span>
+                <span className="color-label">COLOR</span>
+                <span style={{marginTop: "1em"}}>
                   <button
                     className={
                       1 === colorId
@@ -162,7 +154,7 @@ export const AddJournalForm = () => {
             </div>
             <div style={{ display: "flex" }}>
               <button className="submit-button" onClick={handleSubmit}>
-                Save
+                SAVE
               </button>
             </div>
           </div>

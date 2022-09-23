@@ -14,14 +14,20 @@
   height: 100%;
 }
 
-.quil-contailer {
+.quill-container {
   width: 100%;
-  padding: 0px 40px;
+  height: 500px;
+  padding: 1em;
+  margin: 1em ;
 }
 
 .outer-container {
+  border: 2px solid red;
   width: 100%;
-  overflow: scroll;
+  max-width: 1000px;
+  padding: 1em;
+  margin: auto;
+  margin-top: 3em;
 }
 
 .heading-container {

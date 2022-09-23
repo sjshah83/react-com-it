@@ -4,7 +4,7 @@ import { ModalHeader, ModalFooter ,ModalRegisterForm} from "./Register.jsx"
 
 export const Register = () => {
   return (
-    <div className="bodyBackground">
+    <div className="my-body-background">
       <div class="my-modal">
         <div class="my-modal-inner">
           <ModalHeader />
