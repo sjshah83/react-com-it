@@ -1,41 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-
-import * as ROUTES from './constants/routes'
-import LandingPage from './components/Landing';
-import SignUpPage from './components/SignUp';
-import SignInPage from './components/SignIn';
-import PasswordForgetPage from './components/PasswordForget';
-import HomePage from './components/Home';
-import AccountPage from './components/Account';
-import AdminPage from './components/Admin';
-import Navigation from './components/Navigation';
+import App from './components/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
+
+const AppBase = () => (
+  <React.StrictMode>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <App/>
+    </FirebaseContext.Provider>
+  </React.StrictMode>
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <FirebaseContext.Provider value={new Firebase()}>
-      <BrowserRouter>
-        <div>
-          <Navigation />
-          <hr />
-        </div>
-        <Routes>
-          <Route exact path={ROUTES.LANDING} element={<LandingPage />} />
-          <Route path={ROUTES.SIGN_UP} element={<SignUpPage />} />
-          <Route path={ROUTES.SIGN_IN} element={<SignInPage />} />
-          <Route path={ROUTES.PASSWORD_FORGET} element={<PasswordForgetPage />} />
-          <Route path={ROUTES.HOME} element={<HomePage />} />
-          <Route path={ROUTES.ACCOUNT} element={<AccountPage />} />
-          <Route path={ROUTES.ADMIN} element={<AdminPage />} />
-        </Routes>
-      </BrowserRouter>
-    </FirebaseContext.Provider>
-  </React.StrictMode>
+  <AppBase/>
 );
 
 // If you want to start measuring performance in your app, pass a function
