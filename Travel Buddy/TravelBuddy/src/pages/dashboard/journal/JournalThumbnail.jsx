@@ -42,7 +42,10 @@ const JournalThumbnail = (props) => {
                 </CardSubtitle>
             </CardBody>
             <Link to={'/dashboard/journal/' + props.journal.id} state={{ data: props.journal }}>
-                <CardImg style={journalImg} src={props.journal.featureImg} alt="Journal Image" />
+                <CardImg style={journalImg}
+                    src={props.journal.featureImg} 
+                    alt="Journal Image"
+                    onError={(e)=>{e.target.onerror = null; e.target.src="http://localhost:3000/image-not-found.jpg"}} />
             </Link>
             <CardBody>
                 <CardSubtitle>

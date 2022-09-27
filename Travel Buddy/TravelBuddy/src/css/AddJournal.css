@@ -34,9 +34,9 @@
 
 .form-container {
   width: 100%;
-  /* margin: auto; */
+  margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
 }
 
@@ -76,7 +76,7 @@
   padding: 2px;
   width: 100%;
   color: #111827;
-  font-size: 20px;
+  font-size: 15px;
   background: #f9fafb;
   border-radius: 8px;
   border: 1px solid #d1d5db;
@@ -106,6 +106,7 @@ input:focus {
   line-height: 2em;
   font-size: 1.5em;
   font-weight: bolder;
+  vertical-align: center;
 }
 
 .privacy-buttons-container {
@@ -200,6 +201,7 @@ button:focus {
 .submit-button {
   display: flex;
   margin-left: auto;
+  margin-top:2em;
   color: white;
   font-size: 15px;
   background-color: #6b7280;
@@ -209,5 +211,4 @@ button:focus {
 
 .submit-button:hover {
   background-color: #dc2626;
-  border-radius: 4px;
 }

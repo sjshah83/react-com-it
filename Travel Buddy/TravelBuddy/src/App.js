@@ -4,13 +4,14 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/homepage";
 import Login from "./pages/userAccount/login";
 import Dashboard from "./pages/dashboard";
-import { Trips } from "./pages/dashboard/trips/trips";
+import { Trips } from "./pages/dashboard/trips/ViewTrips";
 import { Journals } from "./pages/dashboard/journal/Journals";
 import { Recomondations } from "./pages/dashboard/Recomondations";
 import Register from "./pages/userAccount/register";
 import AddJournalForm from "./pages/dashboard/journal/add-journal/AddJournal";
 import EditJournalForm from "./pages/dashboard/journal/edit-journal/EditJournal";
 import ViewJournalPage from "./pages/dashboard/journal/view-journal/ViewJournal";
+import AddTripForm from "./pages/dashboard/trips/AddTrip";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="recomondations" element={<Recomondations />} />
         <Route path="addJournal" element={<AddJournalForm />} />
         <Route path="editJournal" element={<EditJournalForm />} />
+        <Route path="addTrip" element={<AddTripForm />} />
         <Route
           path="*"
           element={
