@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { storage } from "../../../config/firebase"
+import dataBase, { storage } from "../../../config/firebase"
+import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useRef } from "react";
+import {v4 as uuidv4} from 'uuid';
 
 // createDate:new Date(),
 // coverImg:'',
@@ -17,6 +19,7 @@ const AddTripForm = () => {
 
     const [inputImg, setInputImg] = useState(require("../../../images/imageUploadIcon.png"));
     const [title, setTitle] = useState('');
+    const [tripId, setTripId] = useState();
     const [coverImg, setCoverImg] = useState(null);
     const [coverImgURL, setCoverImgURL] = useState('');
     const [tripImgs, setTripImgs] = useState([]);
@@ -28,69 +31,140 @@ const AddTripForm = () => {
     const [progress, setProgress] = useState(0);
     const [multiImgProgress, setMultiImgProgress] = useState(0);
 
-    const importTitleImage = () => {
+
+    useEffect(() => {
+        console.log(tripImgURLs, "tripImag URLs in use Effect");
+        // addTripImages(tripId, tripImgURLs);
+    }, [tripImgURLs]);
+
+    const importCoverImage = () => {
         inputFile.current.click();
     };
 
-    const importMultipleImage = () => {
+    const imporImageList = () => {
         inputFileMultiple.current.click();
     };
 
-    const handleChange = e => {
-        console.log(e.target.files[0], "HandleCHange : --- >");
+
+    const handleChangeCoverImg = e => {
+        console.log(e.target.files[0], "handleChangeCoverImg : --- >");
         if (e.target.files[0]) {
             setInputImg(URL.createObjectURL(e.target.files[0]));
             setCoverImg(e.target.files[0]);
         }
     }
 
-    const handleChangeMultiple = e => {
-        console.log(e.target.files[0], "HandleCHange : --- >");
-        if (e.target.files[0]) {
-            setInputImg(URL.createObjectURL(e.target.files[0]));
-            setCoverImg(e.target.files[0]);
+    const handleChangeImageList = (e) => {
+        for (let i = 0; i < e.target.files.length; i++) {
+            const newImg = e.target.files[i];
+            newImg['id'] = Math.random();
+            setTripImgs((prevState) => [...prevState, newImg])
         }
+        console.log(e.target.files, "handleChangeImageList : --- >");
     }
 
-
-
-    const handleSubmit = () => {
-        handleUpload();
-        // if (handleUpload) {
-        //     const tripId = addTrip();
-        // }
+    const handleSubmit = async () => {
+        if (coverImgURL === null)
+            setCoverImgURL("http://localhost:3000/image-not-found.jpg");
+        console.log(coverImgURL, "coverImgURL in handle submit : ");
+        const tripsRef = collection(dataBase, 'trips');
+        await addDoc(tripsRef, {
+            title: title,
+            coverImg: coverImgURL,
+            isPublish: isPublish,
+            createDate: createDate,
+            userId: userId,
+        }).then(docRef => {
+            console.log(docRef.id, "new Trip ID");
+            setTripId(docRef.id);
+            handleUploadImgList();
+        })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
-    const addTrip = () => {
-
-    }
-
-    const handleUpload = () => {
-        console.log(coverImg.name, "Handle change --> coverImg Name");
-        const storageRef = ref(storage, `trips/${title}/${coverImg.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, coverImg);
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                //check progress and update
-                const percentage = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                setProgress(percentage);
-            },
-            (error) => {
-                console.log(error, "Upload cover page error");
-            },
-            () => {
-                //get uploaded URL
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then((url) => {
-                        console.log(url);
-                        setCoverImgURL(url);
-                    })
-            }
-        )
+    const handleUploadImgList = () => {
+        const promises = [];
+        tripImgs.map((image) => {
+            // const imgName = `trips/${title}/${image.name}`+ uuidv4() ;
+            const storageRef = ref(storage, imgName);
+            const uploadTask = uploadBytesResumable(storageRef, `trips/${title}/${image.name}`);
+            promises.push(uploadTask);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    //check progress and update
+                    const percentage = Math.round( 
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setMultiImgProgress(percentage);
+                },
+                (error) => {
+                    console.log(error, "Upload multiple image error");
+                },
+                async () => {
+                    //get uploaded URL
+                    await getDownloadURL(uploadTask.snapshot.ref)
+                        .then((tripImgURLs) => {
+                            setTripImgURLs((prevState) => [...prevState, tripImgURLs]);
+                            console.log(tripImgURLs, "GETTING MULTIPLE URLS");
+                        })
+                }
+            )
+        })
+        Promise.all(promises)
+            .then(() => console.log(tripImgURLs, "All images uploaded"))
+            .catch((err) => console.log(err, "Error in upload Trip Images."));
     };
+
+    const addTripImages = async (tripId, imgURL) => {
+        console.log(imgURL, "ADDING MULTIPLE TRIP IMAGES");
+        const tripImgsRef = collection(dataBase, 'tripImages');
+
+        await addDoc(tripImgsRef, {
+            tripId: tripId,
+            imgURL: imgURL,
+            userId: userId,
+        })
+            .then(docRef => {
+                console.log(docRef.id, "new Trip IMAGE  ID");
+                handleUploadImgList(docRef.id);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+    }
+
+    const handleUploadCoverImg = () => {
+        if (coverImg !== null) {
+            const storageRef = ref(storage, `trips/${title}/${coverImg.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, coverImg);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    //check progress and update
+                    const percentage = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setProgress(percentage);
+                },
+                (error) => {
+                    console.log(error, "Upload cover page error");
+                },
+                () => {
+                    //get uploaded URL
+                    getDownloadURL(uploadTask.snapshot.ref)
+                        .then((coverImgURL) => {
+                            setCoverImgURL(coverImgURL);
+                            console.log(coverImgURL, "coverImgURL in getDownloadURL");
+                        })
+                }
+            )
+        }
+    };
+
     const enabledImageIconDiv = e => {
         if (e.target.checked)
             setIsEnabled(true);
@@ -166,16 +240,19 @@ const AddTripForm = () => {
                                     id="file"
                                     ref={inputFile}
                                     style={{ display: "none" }}
-                                    onChange={handleChangeMultiple}
+                                    onChange={handleChangeCoverImg}
                                     accept="image/*"
                                 />
                             </div>
 
-                            <div style={imageContainer} className="title-image" onClick={importTitleImage}>
+                            <div style={imageContainer} className="title-image" onClick={importCoverImage}>
                                 <img src={inputImg} style={imageStyle} className="image-style" />
                             </div>
-                            <div>
-                                <progress style={progressCSS} value={progress} max="100" />
+                            <div style={{ margin: "auto", width: "100%" }}>
+                                {/* <progress style={progressCSS} value={progress} max="100" /> */}
+                                <button className="privacy-buttons" style={{ borderRadius: "15px", width: "12em", height: "3em" }} onClick={handleUploadCoverImg}>
+                                    UPLOAD IMAGE
+                                </button>
                             </div>
                         </div>
 
@@ -209,13 +286,13 @@ const AddTripForm = () => {
                                     id="file"
                                     ref={inputFileMultiple}
                                     style={{ display: "none" }}
-                                    onChange={handleChange}
+                                    onChange={handleChangeImageList}
                                     accept="image/*"
                                     multiple
                                 />
                             </div>
 
-                            <div style={isEnabled ? imageContainer : imageContainerDisabled} className="title-image" onClick={importMultipleImage}>
+                            <div style={isEnabled ? imageContainer : imageContainerDisabled} className="title-image" onClick={imporImageList}>
                                 <img src="http://localhost:3000/imageUploadIcon.png" style={imageStyle} className="image-style" />
                             </div>
                             <div>
