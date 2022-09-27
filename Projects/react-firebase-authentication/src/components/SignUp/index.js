@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
 import { FirebaseContext, withFirebase } from '../Firebase';
+import { withNavigate } from '../Navigation';
 
 const SignUpPage = () => (
   <div>
@@ -31,7 +32,17 @@ class SignUpFormBase extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase
+          .user(authUser.user.uid)
+          .set({
+            username,
+            email,
+          });
+      })
+      .then(() => {
         this.setState({ ...INITIAL_STATE });
+        this.props.navigate(ROUTES.HOME);
       })
       .catch(error => {
         this.setState({ error });
@@ -103,7 +114,7 @@ const SignUpLink = () => (
   </p>
 );
 
-const SignUpForm = withFirebase(SignUpFormBase);
+const SignUpForm = withNavigate( withFirebase(SignUpFormBase));
 
 export default SignUpPage;
 
