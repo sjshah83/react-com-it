@@ -115,7 +115,7 @@ export const ViewJournalPage = (props) => {
               <img style={image}
                 src={journals.featureImg}
                 alt="My Image"
-                onError={(e)=>{e.target.onerror = null; e.target.src="http://localhost:3000/image-not-found.jpg"}}
+                // onError={(e)=>{e.target.onerror = null; e.target.src="http://localhost:3000/image-not-found.jpg"}}
               />
               <div style={information}>
                 <h1 style={title}>

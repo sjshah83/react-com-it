@@ -4,18 +4,13 @@ import dataBase, { storage } from "../../../config/firebase"
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useRef } from "react";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
-// createDate:new Date(),
-// coverImg:'',
-// isPublish:false,
-// userId:'Shital Shah',
 
 const AddTripForm = () => {
 
     const inputFile = useRef(null);
     const inputFileMultiple = useRef(null);
-    // const title = useRef(null);
 
     const [inputImg, setInputImg] = useState(require("../../../images/imageUploadIcon.png"));
     const [title, setTitle] = useState('');
@@ -32,10 +27,10 @@ const AddTripForm = () => {
     const [multiImgProgress, setMultiImgProgress] = useState(0);
 
 
-    useEffect(() => {
-        console.log(tripImgURLs, "tripImag URLs in use Effect");
-        // addTripImages(tripId, tripImgURLs);
-    }, [tripImgURLs]);
+    // useEffect(() => {
+    //     console.log(tripImgURLs, "tripImag URLs in use Effect");
+    //     // addTripImages(tripId, tripImgURLs);
+    // }, [tripImgURLs]);
 
     const importCoverImage = () => {
         inputFile.current.click();
@@ -60,10 +55,12 @@ const AddTripForm = () => {
             newImg['id'] = Math.random();
             setTripImgs((prevState) => [...prevState, newImg])
         }
-        console.log(e.target.files, "handleChangeImageList : --- >");
+        // console.log(e.target.files, "handleChangeImageList : --- >");
+        // console.log(tripImgURLs, "handleChangeImageList URLS : ");
     }
 
     const handleSubmit = async () => {
+        console.log(tripImgURLs, "NOW SUBMITTING DATA");
         if (coverImgURL === null)
             setCoverImgURL("http://localhost:3000/image-not-found.jpg");
         console.log(coverImgURL, "coverImgURL in handle submit : ");
@@ -74,10 +71,10 @@ const AddTripForm = () => {
             isPublish: isPublish,
             createDate: createDate,
             userId: userId,
-        }).then(docRef => {
+        }).then(async (docRef) => {
             console.log(docRef.id, "new Trip ID");
-            setTripId(docRef.id);
-            handleUploadImgList();
+            // setTripId(docRef.id);
+            addTripImages(docRef.id);
         })
             .catch(error => {
                 console.log(error);
@@ -86,16 +83,18 @@ const AddTripForm = () => {
 
     const handleUploadImgList = () => {
         const promises = [];
-        tripImgs.map((image) => {
-            // const imgName = `trips/${title}/${image.name}`+ uuidv4() ;
-            const storageRef = ref(storage, imgName);
-            const uploadTask = uploadBytesResumable(storageRef, `trips/${title}/${image.name}`);
+        console.log("inside handleUploadImgList");
+        console.log(tripImgs, "inside handleUploadImgList");
+        tripImgs.map(async (image) => {
+            const path = `trips/${title}/${image.name}` + uuidv4();
+            const storageRef = ref(storage, path);
+            const uploadTask = uploadBytesResumable(storageRef, image);
             promises.push(uploadTask);
             uploadTask.on(
                 "state_changed",
                 (snapshot) => {
-                    //check progress and update
-                    const percentage = Math.round( 
+                    // check progress and update
+                    const percentage = Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
                     setMultiImgProgress(percentage);
@@ -106,35 +105,33 @@ const AddTripForm = () => {
                 async () => {
                     //get uploaded URL
                     await getDownloadURL(uploadTask.snapshot.ref)
-                        .then((tripImgURLs) => {
-                            setTripImgURLs((prevState) => [...prevState, tripImgURLs]);
+                        .then((url) => {
+                            // console.log(url,"URL");
+                            setTripImgURLs((prevState) => [...prevState, url]);
                             console.log(tripImgURLs, "GETTING MULTIPLE URLS");
                         })
                 }
             )
+            // console.log(tripImgURLs, "inside handleUploadImgList URLS");
         })
         Promise.all(promises)
-            .then(() => console.log(tripImgURLs, "All images uploaded"))
+            .then(() => alert("All images uploaded"))
             .catch((err) => console.log(err, "Error in upload Trip Images."));
     };
 
-    const addTripImages = async (tripId, imgURL) => {
-        console.log(imgURL, "ADDING MULTIPLE TRIP IMAGES");
-        const tripImgsRef = collection(dataBase, 'tripImages');
+    const addTripImages = async (tripId) => {
 
-        await addDoc(tripImgsRef, {
-            tripId: tripId,
-            imgURL: imgURL,
-            userId: userId,
+        const tripImgsRef = collection(dataBase, 'tripImageCollection');
+
+        console.log(tripImgURLs, "Inside ADDING MULTIPLE TRIP IMAGES");
+        tripImgURLs.map(async(url)=>{
+            console.log(url,"URL");
+            await addDoc(tripImgsRef, {
+                tripId: tripId,
+                imgURL: url,
+                userId: userId,
+            })
         })
-            .then(docRef => {
-                console.log(docRef.id, "new Trip IMAGE  ID");
-                handleUploadImgList(docRef.id);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-
     }
 
     const handleUploadCoverImg = () => {
@@ -198,10 +195,12 @@ const AddTripForm = () => {
     const progressCSS = {
         boxSizing: "border-box",
         display: "inline-block",
-        height: "10em",
+        height: "9em",
         width: "20em",
-        verticalAlign: ".02em",
-        marginRight: "2em",
+        padding: "0px 10px",
+        margin:" 0px 2px",
+        verticalAlign: "-1em",
+        // marginRight: "2em",
     }
 
     const containerBorder = {
@@ -274,12 +273,8 @@ const AddTripForm = () => {
                             </span>
                         </div>
                         <div className="privacy-inner-container" style={containerBorder}>
-                            {/* <input
-                                    type="file"
-                                    onChange={handleChange} />
-                                 */}
                             <div style={{ width: "100%" }} >
-                                <span className="privacy-label">DO YOU HAVE PHOTOS FOR THE TRIP? </span>
+                                <span className="privacy-label">DO YOU HAVE MORE PHOTOS ? </span>
                                 <input type="checkbox" style={{ transform: " scale(2)" }} onChange={enabledImageIconDiv} />
                                 <input
                                     type="file"
@@ -295,8 +290,13 @@ const AddTripForm = () => {
                             <div style={isEnabled ? imageContainer : imageContainerDisabled} className="title-image" onClick={imporImageList}>
                                 <img src="http://localhost:3000/imageUploadIcon.png" style={imageStyle} className="image-style" />
                             </div>
-                            <div>
+                            {/* <div>
                                 <progress style={progressCSS} value={multiImgProgress} max="100" />
+                            </div> */}
+                            <div style={{ margin: "auto", width: "100%" }}>
+                                <button className="privacy-buttons" style={{ borderRadius: "15px", width: "12em", height: "3em" }} onClick={handleUploadImgList}>
+                                    UPLOAD IMAGES
+                                </button>
                             </div>
                         </div>
                         <div style={{ display: "flex" }}>
