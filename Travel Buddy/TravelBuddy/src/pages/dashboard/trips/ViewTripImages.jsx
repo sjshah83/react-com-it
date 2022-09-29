@@ -52,8 +52,6 @@ const ViewTripImages = () => {
                 </div>
 
                 <div style={mainContainer}>
-
-
                     {
                         images.map((image) => {
                             // console.log("Journals : ",journal)
@@ -63,7 +61,7 @@ const ViewTripImages = () => {
                         })
                     }
 
-                    
+
                 </div>
             </section>
         )

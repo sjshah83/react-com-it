@@ -107,7 +107,7 @@ export const ViewJournalPage = (props) => {
       <section class="container-outer">
         <div className="container-inner">
           <div className="heading-container"  style={{ marginBottom:"2em"}}>
-            <h1 className="heading">Journal {journals.title}</h1>
+            <h1 className="heading">{journals.title}</h1>
           </div>
           <div>
             <div style={image_container}>
