@@ -6,7 +6,7 @@ import "../../../css/AddJournal.css";
 
 export const Journals = () => {
 
-    const [isLoaded, setLoaded] = useState('false');
+    const [isLoaded, setLoaded] = useState(false);
     const [journals, setJournals] = useState([]);
 
     useEffect(() => {

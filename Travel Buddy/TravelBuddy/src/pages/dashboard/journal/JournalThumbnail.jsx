@@ -10,7 +10,6 @@ export function timeStampToString(timeStamp) {
 
 const JournalThumbnail = (props) => {
 
-
     const journalCard = {
         // border:"3px solid red",
         width: "300px",

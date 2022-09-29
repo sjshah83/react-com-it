@@ -21,19 +21,17 @@ const Navigation = () => {
         <div className="list">
           <ul>
             <li>
-            <Link to="/dashboard/journals">JOURNALS</Link>
+              <Link to="/dashboard/menu">DASHBOARD</Link>
             </li>
             <li>
-            <NavLink
-                className={({ isActive }) => (isActive ? 'activeLink' : 'inactive')}
-                to="/dashboard/trips">TRIPS</NavLink>
-              
+              <Link to="/dashboard/journals">JOURNALS</Link>
+            </li>
+            <li>
+              <NavLink to="/dashboard/trips">TRIPS</NavLink>
+
             </li>
             <li>
               <Link to="/dashboard/recomondations">RECOMMENDATIONS</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/settings">SETTINGS</Link>
             </li>
           </ul>
         </div>

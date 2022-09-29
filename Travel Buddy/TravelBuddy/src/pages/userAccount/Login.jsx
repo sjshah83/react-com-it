@@ -37,7 +37,7 @@ const ModalLoginForm = () => {
 
     let handleLogin = () => {
         if (userName.current.value === "abs@gmail.com" && userPasswd.current.value === "123") {
-            navigate("/dashboard");
+            navigate("/dashboard/menu");
         } else {
             alert("Not valid username or password");
         }

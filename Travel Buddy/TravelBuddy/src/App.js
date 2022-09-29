@@ -12,6 +12,7 @@ import AddJournalForm from "./pages/dashboard/journal/add-journal/AddJournal";
 import EditJournalForm from "./pages/dashboard/journal/edit-journal/EditJournal";
 import ViewJournalPage from "./pages/dashboard/journal/view-journal/ViewJournal";
 import AddTripForm from "./pages/dashboard/trips/AddTrip";
+import DashboardMenu from "./pages/dashboard/DashboadMenu";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="menu" element={<DashboardMenu />} />
         <Route path="trips" element={<Trips />} />
         <Route path="journals" element={<Journals/>}/>
         <Route path="journal/:id" element={<ViewJournalPage authed={true} />} />

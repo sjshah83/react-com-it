@@ -43,7 +43,7 @@ export const EditJournalForm = () => {
 
   const handleSubmit = () => {
     createJournal();
-    navigate("/dashboard");
+    navigate("/dashboard/menu");
   };
 
   const containerOuter = {

@@ -5,12 +5,14 @@ import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { useRef } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
 
 
 const AddTripForm = () => {
 
     const inputFile = useRef(null);
     const inputFileMultiple = useRef(null);
+    const navigate = useNavigate();
 
     const [inputImg, setInputImg] = useState(require("../../../images/imageUploadIcon.png"));
     const [title, setTitle] = useState('');
@@ -25,12 +27,6 @@ const AddTripForm = () => {
     const [userId, setUserId] = useState('Shital Shah');
     const [progress, setProgress] = useState(0);
     const [multiImgProgress, setMultiImgProgress] = useState(0);
-
-
-    // useEffect(() => {
-    //     console.log(tripImgURLs, "tripImag URLs in use Effect");
-    //     // addTripImages(tripId, tripImgURLs);
-    // }, [tripImgURLs]);
 
     const importCoverImage = () => {
         inputFile.current.click();
@@ -71,14 +67,17 @@ const AddTripForm = () => {
             isPublish: isPublish,
             createDate: createDate,
             userId: userId,
-        }).then(async (docRef) => {
-            console.log(docRef.id, "new Trip ID");
-            // setTripId(docRef.id);
-            addTripImages(docRef.id);
         })
+            .then(async (docRef) => {
+                console.log(docRef.id, "new Trip ID");
+                // setTripId(docRef.id);
+                addTripImages(docRef.id);
+            })
             .catch(error => {
                 console.log(error);
             })
+
+            navigate("/dashboard/menu");
     }
 
     const handleUploadImgList = () => {
@@ -124,8 +123,8 @@ const AddTripForm = () => {
         const tripImgsRef = collection(dataBase, 'tripImageCollection');
 
         console.log(tripImgURLs, "Inside ADDING MULTIPLE TRIP IMAGES");
-        tripImgURLs.map(async(url)=>{
-            console.log(url,"URL");
+        tripImgURLs.map(async (url) => {
+            // console.log(url,"URL");
             await addDoc(tripImgsRef, {
                 tripId: tripId,
                 imgURL: url,
@@ -198,7 +197,7 @@ const AddTripForm = () => {
         height: "9em",
         width: "20em",
         padding: "0px 10px",
-        margin:" 0px 2px",
+        margin: " 0px 2px",
         verticalAlign: "-1em",
         // marginRight: "2em",
     }
