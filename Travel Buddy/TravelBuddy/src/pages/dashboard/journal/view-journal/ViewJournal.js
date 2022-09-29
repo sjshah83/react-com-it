@@ -17,7 +17,6 @@ export const ViewJournalPage = (props) => {
 
   useEffect(() => {
     getJournalById(params.id);
-    console.log(journals.featureImg,"Img path");
     if(journals.featureImg==='undefined'){
 
     }

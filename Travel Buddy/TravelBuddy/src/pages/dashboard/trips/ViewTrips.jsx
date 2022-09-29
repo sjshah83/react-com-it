@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import dataBase from "../../../config/firebase";
 import TripThumbnail from "./TripThumbnail";
 
-export const Trips = () => {
+export const ViewTrips = () => {
 
     const navigate = useNavigate();
 
@@ -69,4 +69,4 @@ export const Trips = () => {
     );
 }
 
-export default Trips;
+export default ViewTrips;
