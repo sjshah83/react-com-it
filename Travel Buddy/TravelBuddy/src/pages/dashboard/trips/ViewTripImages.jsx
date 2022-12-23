@@ -60,8 +60,6 @@ const ViewTripImages = () => {
                             );
                         })
                     }
-
-
                 </div>
             </section>
         )

@@ -35,7 +35,7 @@ function App() {
           path="*"
           element={
             <main style={{ padding: "1em" }}>
-              <h1>There's nothing here!</h1>
+              <h1>No matching page found!</h1>
             </main>
           }
         />
